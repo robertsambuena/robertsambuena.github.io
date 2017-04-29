@@ -40,9 +40,9 @@
             <div class="col-sm-3 form-group">
               <input id="startdate" type="date" class="form-control" placeholder="Start Date:">
             </div>
-            <div class="col-sm-3 form-group">
+            <!-- <div class="col-sm-3 form-group">
               <input id="nummonths" type="number" class="form-control" placeholder="Number of months to render:">
-            </div>
+            </div> -->
             <div class="col-sm-3 form-group">
               <input id="skipdays" type="number" class="form-control" placeholder="Skip days:">
             </div>
@@ -86,6 +86,8 @@
     function loadEvents(details) {
       $('#calendar').fullCalendar( 'removeEvents');
       $('#calendar').fullCalendar('addEventSource', details);
+      var n = $('#calendar').offset().top;
+      $('html, body').animate({ scrollTop: n }, '1500');
     }
 
     function processDates(start, skipDays, numberOfMonths) {
@@ -99,7 +101,6 @@
 
       for (var i = 0; i < numberOfMonths; i++) { //first loop, per month
         var start = restartDate || start;
-        console.log('start', start);
 
         for (var days = 1; days <= KILLS; days++) {
           var regularDay = start;
